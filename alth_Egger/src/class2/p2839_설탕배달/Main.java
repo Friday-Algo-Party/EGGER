@@ -1,4 +1,4 @@
-package p2839;
+package class2.p2839_설탕배달;
 
 import java.util.Scanner;
 

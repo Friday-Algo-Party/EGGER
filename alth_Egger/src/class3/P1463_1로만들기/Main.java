@@ -1,4 +1,4 @@
-package P1463;
+package class3.P1463_1로만들기;
 
 import java.util.Scanner;
 

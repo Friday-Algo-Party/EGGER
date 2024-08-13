@@ -1,4 +1,4 @@
-package p1546;
+package class2.p1546_평균;
 
 import java.util.Arrays;
 import java.util.StringTokenizer;
