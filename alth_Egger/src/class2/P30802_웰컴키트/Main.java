@@ -1,4 +1,4 @@
-package class1.P30802_웰컴키트;
+package class2.P30802_웰컴키트;
 
 import java.util.Scanner;
 
