@@ -20,15 +20,8 @@ public class Main {
         int clothCount = 0;
 
         for (int i = 0; i < clothSize.length; i++) {
-
-            if (clothSize[i] / T < 0) {
-                clothCount++;
-            } else {
-                clothCount += clothSize[i] / T;
-                if (clothSize[i] % T != 0) {
-                    clothCount++;
-                }
-            }
+            clothCount += clothSize[i] / T;    //나눠 떨어지는 몫
+            clothCount = clothSize[i] % T > 0 ? clothCount + 1 : clothCount;
         }
         System.out.println(clothCount);
         System.out.println(people / P + " " + people % P);
