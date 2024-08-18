@@ -1,6 +1,7 @@
 package class2.P9012_괄호;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
     public static void main(String args[]) {
@@ -13,26 +14,18 @@ public class Main {
     }
 
     private static void checkValid(String sentence) {
-        int count = 0;
-
-        if (sentence.length() % 2 != 0) {
-            System.out.println("NO");
-            return;
-        }
+        Stack<Character> stack = new Stack<>();
 
         for (char ch : sentence.toCharArray()) {
             if (ch == '(') {
-                count++;
-            } else if (ch == ')') {
-                count--;
-            }
-
-            if (count < 0) {
+                stack.push(ch);
+            } else if (stack.isEmpty()) {
                 System.out.println("NO");
                 return;
+            } else {
+                stack.pop();
             }
         }
-
-        System.out.println(count == 0 ? "YES" : "NO");
+        System.out.println(stack.isEmpty() ? "YES" : "NO");
     }
 }
