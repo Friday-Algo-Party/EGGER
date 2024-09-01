@@ -54,4 +54,16 @@ class Main {
             }
         }
     }
+
+    public static void dfs(int V) {
+        vist[V] = true; // 현재 노드 방문 처리
+        list.add(V); // 방문한 컴퓨터를 리스트에 추가
+
+        for (int i = 1; i <= computer; i++) { // 인덱스 1부터 computer까지 탐색
+            if (arr[V][i] == 1 && !vist[i]) {
+                System.out.println(i);
+                dfs(i);
+            }
+        }
+    }
 }
