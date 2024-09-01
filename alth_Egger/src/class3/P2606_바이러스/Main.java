@@ -31,8 +31,8 @@ class Main {
             arr[x][y] = arr[y][x] = 1;
         }
 
-        dfs(1); //1번 컴에서 시작
-        System.out.println(list.size() - 1);
+        dfs(1); // 1번 컴퓨터에서 시작
+        System.out.println(list.size() - 1); // 1번 컴퓨터를 제외한 감염된 컴퓨터 수 출력
     }
 
     public static void dfs(int V) {
@@ -41,7 +41,6 @@ class Main {
 
         for (int i = 1; i <= computer; i++) { // 인덱스 1부터 computer까지 탐색
             if (arr[V][i] == 1 && !vist[i]) {
-                System.out.println(i);
                 dfs(i);
             }
         }
