@@ -71,13 +71,13 @@ public class Main {
         while (!queue.isEmpty()) {
             int curx = queue.peek()[0];
             int cury = queue.peek()[1];
-            queue.poll();
+            queue.poll();   //삭제 해줘야지 무한루프 안돌아감
             for (int i = 0; i < 4; i++) {
                 int nx = curx + dx[i];
                 int ny = cury + dy[i];
-                if (nx >= 0 && ny >= 0 && nx < N && ny < N) {
-                    if (apart[nx][ny] == 1 && visit[nx][ny] == false) {
-                        queue.add(new int[]{nx, ny});
+                if (nx >= 0 && ny >= 0 && nx < N && ny < N) {   //처음부터 막지막 까지
+                    if (apart[nx][ny] == 1 && visit[nx][ny] == false) { //갈 수 있는 곳이면서 방문한 적 없는 곳으로
+                        queue.add(new int[]{nx, ny});   //큐에 추가해줌
                         visit[nx][ny] = true;
                         showApart[apartNum]++;
                     }
