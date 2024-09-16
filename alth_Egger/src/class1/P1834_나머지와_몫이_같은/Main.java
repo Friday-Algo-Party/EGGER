@@ -3,7 +3,7 @@ package class1.P1834_나머지와_몫이_같은;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//나머지는 N과 같거나 클 수 없다
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
