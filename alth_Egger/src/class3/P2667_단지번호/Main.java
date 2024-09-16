@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
     static int[] dx = new int[]{0, 0, -1, 1}; //상하좌우
@@ -19,7 +21,7 @@ public class Main {
         N = Integer.parseInt(br.readLine());
         apart = new int[N][N];
         visit = new boolean[N][N];
-        showApart = new int[N*N];
+        showApart = new int[N * N];
         apartNum = 0;
         for (int i = 0; i < N; i++) {
             String input = br.readLine();
@@ -31,8 +33,8 @@ public class Main {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (apart[i][j] == 1 && visit[i][j] == false) {
-                    dfs(i, j);
                     apartNum++;
+                    bfs(i, j);
                 }
             }
         }
@@ -47,15 +49,38 @@ public class Main {
 
     }
 
-    public static void dfs(int x, int y) {
+//    public static void dfs(int x, int y) {
+//        visit[x][y] = true;
+//        showApart[apartNum]++;
+//        for (int i = 0; i < 4; i++) {
+//            int nx = x + dx[i];
+//            int ny = y + dy[i];
+//            if (nx >= 0 && ny >= 0 && nx < N && ny < N) {
+//                if (apart[nx][ny] == 1 && visit[nx][ny] == false) {
+//                    dfs(nx, ny);
+//                }
+//            }
+//        }
+//    }
+
+    public static void bfs(int x, int y) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{x, y});
         visit[x][y] = true;
         showApart[apartNum]++;
-        for (int i = 0; i < 4; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if (nx >= 0 && ny >= 0 && nx < N && ny < N) {
-                if (apart[nx][ny] == 1 && visit[nx][ny] == false) {
-                    dfs(nx, ny);
+        while (!queue.isEmpty()) {
+            int curx = queue.peek()[0];
+            int cury = queue.peek()[1];
+            queue.poll();
+            for (int i = 0; i < 4; i++) {
+                int nx = curx + dx[i];
+                int ny = cury + dy[i];
+                if (nx >= 0 && ny >= 0 && nx < N && ny < N) {
+                    if (apart[nx][ny] == 1 && visit[nx][ny] == false) {
+                        queue.add(new int[]{nx, ny});
+                        visit[nx][ny] = true;
+                        showApart[apartNum]++;
+                    }
                 }
             }
         }
