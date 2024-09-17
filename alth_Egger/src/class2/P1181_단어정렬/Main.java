@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,8 +22,13 @@ public class Main {
         String[] list = set.toArray(new String[0]);
 
         // 길이 기준 및 사전순 정렬
-        Arrays.sort(list, Comparator.comparingInt(String::length)
-                .thenComparing(Comparator.naturalOrder()));
+        Arrays.sort(list, (o1, o2) -> {
+            if (o1.length() == o2.length()) {
+                return o1.compareTo(o2);    //사전순으로 정렬
+            } else {
+                return o1.length() - o2.length();   //길이로 정렬
+            }
+        });
         for (int i = 0; i < list.length; i++) {
             System.out.println(list[i]);
         }
