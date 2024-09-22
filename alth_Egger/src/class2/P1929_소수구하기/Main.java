@@ -12,6 +12,8 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         int N = Integer.parseInt(st.nextToken());
 
+//        boolean[] arr = new boolean[N + 1];
+
         for (int i = M; i < N + 1; i++) {
             if (isPrime(i)) {
                 System.out.println(i);
@@ -21,7 +23,7 @@ public class Main {
 
     public static boolean isPrime(int n) {
         if (n <= 1) return false;   //1보다 작거나 같은건 소수가 아님
-        for (int i = 2; i < Math.sqrt(n); i++) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
                 return false;
             }
