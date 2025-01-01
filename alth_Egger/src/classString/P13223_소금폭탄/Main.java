@@ -11,24 +11,40 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        String[] secondNum = scn.nextLine().split(":");
+        String[] currentTime = scn.nextLine().split(":");
 
-        String[] inputNum = scn.nextLine().split(":");
+        String[] targetTime = scn.nextLine().split(":");
 
-        int currentTime = Integer.parseInt(secondNum[0]) * 3600 + Integer.parseInt(secondNum[1]) * 60 + Integer.parseInt(secondNum[2]);
-        int targetTime = Integer.parseInt(inputNum[0]) * 3600 + Integer.parseInt(inputNum[1]) * 60 + Integer.parseInt(inputNum[2]);
+        int hour = (currentTime[0].charAt(0) * 10 - '0') + currentTime[0].charAt(1) - '0';
+        int minute = (currentTime[1].charAt(0) * 10 - '0') + currentTime[1].charAt(1) - '0';
+        int second = (currentTime[2].charAt(0) * 10 - '0') + currentTime[2].charAt(1) - '0';
 
-        int result = targetTime - currentTime;
+        int targetHour = (targetTime[0].charAt(0) * 10 - '0') + targetTime[0].charAt(1) - '0';
+        int targetMinute = (targetTime[1].charAt(0) * 10 - '0') + targetTime[1].charAt(1) - '0';
+        int targetSecond = (targetTime[2].charAt(0) * 10 - '0') + (targetTime[2].charAt(1) - '0');
 
-        if (result <= 0) {
-            result += 3600 * 24;  //하루를 더해줌. 하루는 24시간인데 초로 계산중이니까 3600*24를 해준거임
+        int needHour = targetHour - hour;
+        int needMinute = targetMinute - minute;
+        int needSecond = targetSecond - second;
+
+        if (needHour == 0 && needMinute == 0 && needSecond == 0) {
+            System.out.println("24:00:00");
+            return;
         }
 
-        int hours = result / 3600;
-        int minutes = result % 3600 / 60;
-        int seconds = result % 60;
+        if (needSecond < 0) {
+            needSecond += 60;
+            needMinute--;
+        }
+        if (needMinute < 0) {
+            needMinute += 60;
+            needHour--;
+        }
+        if (needHour < 0) {
+            needHour += 24;
+        }
 
-        String formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
-        System.out.println(formattedTime);
+        String result = String.format("%02d:%02d:%02d", needHour, needMinute, needSecond);
+        System.out.print(result);
     }
 }
