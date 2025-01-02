@@ -1,4 +1,4 @@
-package classString.P1919_애너그램;
+package Chapter01.classString.P1919_애너그램;
 
 import java.util.Scanner;
 

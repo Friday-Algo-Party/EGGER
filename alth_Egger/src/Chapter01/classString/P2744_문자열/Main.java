@@ -1,4 +1,4 @@
-package classString.P2744_문자열;
+package Chapter01.classString.P2744_문자열;
 
 import java.util.Scanner;
 
