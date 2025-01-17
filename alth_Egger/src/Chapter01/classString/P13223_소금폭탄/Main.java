@@ -1,4 +1,4 @@
-package classString.P13223_소금폭탄;
+package Chapter01.classString.P13223_소금폭탄;
 
 import java.util.Scanner;
 
