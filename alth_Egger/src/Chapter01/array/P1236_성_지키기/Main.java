@@ -1,4 +1,4 @@
-package class1.P1236_성_지키기;
+package Chapter01.array.P1236_성_지키기;
 
 import java.util.Scanner;
 
