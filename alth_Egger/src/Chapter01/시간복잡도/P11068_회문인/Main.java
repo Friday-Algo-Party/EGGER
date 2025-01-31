@@ -2,6 +2,11 @@ package Chapter01.시간복잡도.P11068_회문인;
 
 import java.util.Scanner;
 
+/*
+진수 변환 방법 입력된 값이 9보다 작은 경우에는 char로 변경 후 '0'을 더해줘야지만 숫자에 해당하는 문자를 얻을 수 있음
+10보다 큰 경우 'A' =65 + x-10을 해줘야함. x가 11이라고 가정하면 65+1 한 값 66을 char로 변경하면 B임
+ */
+
 public class Main {
     public static void main(String args[]) {
         Scanner scn = new Scanner(System.in);
@@ -44,10 +49,10 @@ public class Main {
     }
 
     public static char getDigit(int value) {
-        if (value < 9) {
+        if (value < 10) {
             return (char) ('0' + value);
         } else {
-            return (char) ('A' + value - 9);
+            return (char) ('A' + value - 10);
         }
     }
 }
