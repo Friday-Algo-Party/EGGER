@@ -58,8 +58,9 @@ public class Main {
             for (int j = 1; j < candy[i].length; j++) {
                 if (candy[i][j].equals(candy[i][j - 1])) {
                     count++;
-                    maxCount = Math.max(maxCount, count);
-                } else count = 1;
+                    maxCount = Math.max(maxCount, count);   //계속 연속성을 체크하면서 만약 기존 연속성보다 큰게있다면 갱신
+                } else count = 1;   //연속성이 끊어졌을 때 다시 1로 초기화
+                if (maxCount == length) break;
             }
         }
 
@@ -69,10 +70,11 @@ public class Main {
             for (int i = 1; i < length; i++) {
                 if (candy[i][j] == candy[i - 1][j]) {
                     count++;
-                    maxCount = Math.max(maxCount, count);
+                    maxCount = Math.max(maxCount, count);   //여태 젤 큰 값이랑 비교해서 이보다 큰 연속성이 있다면 멈춤
                 } else {
                     count = 1;
                 }
+                if (maxCount == length) break;
             }
         }
         //p가 연속적으로 있는 것의 값
