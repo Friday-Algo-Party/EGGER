@@ -1,4 +1,4 @@
-package Chapter01.P10250_ACM호텔;
+package Chapter01.시간복잡도.P10250_ACM호텔;
 
 import java.util.Scanner;
 
