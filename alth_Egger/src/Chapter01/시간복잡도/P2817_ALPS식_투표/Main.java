@@ -1,5 +1,6 @@
 package Chapter01.시간복잡도.P2817_ALPS식_투표;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -9,6 +10,16 @@ import java.util.Scanner;
  */
 
 public class Main {
+    static class Score {
+        int staffIndex;  //어느 스테프가 받았는지
+        int staffChip;      //1~14의 순서대로 나눈 칩의 몫 개수
+
+        public Score(int staffIndex, int staffChip) {
+            this.staffIndex = staffIndex;
+            this.staffChip = staffChip;
+        }
+    }
+
     public static void main(String[] args) {
         int inputArray[] = new int[26]; //전체 칩 개수
         int result[] = new int[26]; //최종결과 가지고 있는 칩의 개수를 저장 할 곳 - 결과값
@@ -18,47 +29,48 @@ public class Main {
         int checkPercent = (int) (participant * 0.05);  //전체 참가자 수의 5%값
 
         int staffNum = scn.nextInt();   //스태프의 수
-        int candidate = 0;
+        int candidate = 0;      // 각 스태프는 1~14로 나눈 몫의 값을 가지고 있어야 하므로 5%이상의 해당하는 스태프의 숫자를 적용하기 위한 변수
 
         for (int i = 0; i < staffNum; i++) {
             Character staffName = scn.next().charAt(0);
-            int staffChip = scn.nextInt();
+            int staffChip = scn.nextInt();  //스테프 한명이 받은 전체 칩의 수
 
             if (staffChip >= checkPercent) {    //전체 참가자 수의 5%이상의 값만 저장 할 수 있도록
                 inputArray[staffName - 65] = staffChip;
-                candidate++;
+                candidate++;    //5%이상의 스태프의 수를 센다.
             }
-        }
-
-        //14까지 나눈 값의 집합에서 가장 큰 값을 가지고 있는 사람을 선별하기 위한 반복문
-        for (int i = 1; i < 15; i++) {
-            int max = 0;    //나머지 값을 저장
-            int alph = 0;    //알파벳을 저장
-            for (int j = 0; j < inputArray.length; j++) {
-                if (inputArray[j] / i > max) {
-                    max = inputArray[j] / i;
-                    alph = j;
-                }
-            }
-            result[alph]++;
         }
         Score[] scores = new Score[candidate * 14];
+        //한 스태프마다 본인의 인덱스, 1~14의 값으로 나눈 값을 가지고 있어야 하기에 Score class를 생성하여 그 안에 index 값과 몫을 가지고 있도록 한다.
+
+        /*
+        몫을 나눈 값을 scores배열에 저장해야 되기에
+         */
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            for (int j = 1; j < 15; j++) {
+                if (inputArray[i] != 0) {
+                    scores[count] = new Score(i, inputArray[i] / j);    //해당 알파벳이 칩을 가지고 있으면 배열에 1~14까지 나눈 값을 저장한다.
+                    //ex) A가 10734이면 scores[1] = 10734/1 scores[2]=10734/2 이런식
+                    count++;
+                }
+            }
+        }
+        //scores에 들어간 Score 객체의 staffChip을 정렬해야된다.
+        Arrays.sort(scores, 0, scores.length, (a, b) -> Double.compare(b.staffChip, a.staffChip));
+
+        for (int i = 0; i < 14; i++) {
+            result[scores[i].staffIndex]++;
+        }
+
 
         for (int i = 0; i < result.length; i++) {
-            if (result[i] != 0) {
+            if (inputArray[i] != 0) {
                 System.out.print((char) (i + 'A'));
-                System.out.print(" " + result[i]);
+                System.out.println(" " + result[i]);
             }
         }
     }
 }
 
-class Score {
-    String staffName;   //어느 스테프가 받았는지
-    int staffChip;      //실제 점수가 몇점인지
 
-    public Score(String staffName, int staffChip) {
-        this.staffName = staffName;
-        this.staffChip = staffChip;
-    }
-}
