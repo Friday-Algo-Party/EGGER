@@ -1,36 +1,37 @@
 package class2.P1181_단어정렬;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Comparator;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        Set<String> set = new LinkedHashSet<>(); // LinkedHashSet을 사용하여 입력 순서를 유지
+        Scanner scn = new Scanner(System.in);
+        int toatal_count = scn.nextInt();
+        String result[] = new String[toatal_count];
 
-        for (int i = 0; i < n; i++) {
-            String s = br.readLine();
-            set.add(s); // Set에 추가하여 중복 제거
+        for (int i = 0; i < toatal_count; i++) {
+            result[i] = scn.next();
         }
 
-        // Set을 배열로 변환
-        String[] list = set.toArray(new String[0]);
-
-        // 길이 기준 및 사전순 정렬
-        Arrays.sort(list, (o1, o2) -> {
-            if (o1.length() == o2.length()) {
-                return o1.compareTo(o2);    //사전순으로 정렬
-            } else {
-                return o1.length() - o2.length();   //길이로 정렬
+        // 1. 길이가 짧은 것 부터
+        // 2. 길이가 같으면 사전 순으로
+        Arrays.sort(result, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if (o1.length() == o2.length())
+                    return o1.compareTo(o2);
+                return o1.length() - o2.length();
             }
         });
-        for (int i = 0; i < list.length; i++) {
-            System.out.println(list[i]);
+
+        System.out.println(result[0]);
+        for (int i = 1; i < toatal_count; i++) {
+            if (!result[i].equals(result[i - 1])) {
+                System.out.println(result[i]);
+            }
         }
+
     }
 }
