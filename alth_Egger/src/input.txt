@@ -1,6 +1,4 @@
-3 2
-ee
-eed
-ae
-ee
-ae
+3
+21 Junkyu
+21 Dohyun
+20 Sunyoung
