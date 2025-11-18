@@ -1,5 +1,7 @@
 package class3;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class P10431_줄세우기 {

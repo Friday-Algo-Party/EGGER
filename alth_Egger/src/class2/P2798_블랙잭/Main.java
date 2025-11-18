@@ -1,3 +1,5 @@
+package class2.P2798_블랙잭;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
