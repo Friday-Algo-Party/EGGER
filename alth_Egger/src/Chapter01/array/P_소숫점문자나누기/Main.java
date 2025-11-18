@@ -5,6 +5,7 @@ public class Main {
         String answer = "123.1111119";
         int result = 0;
 
+        // 1. 점 기준으로 나누기 (정규식에서 '.'은 모든 문자이므로 '\\.' 사용)
         String splitNum[] = answer.split("\\.");
         int prv = 0;
         int count = 1;
