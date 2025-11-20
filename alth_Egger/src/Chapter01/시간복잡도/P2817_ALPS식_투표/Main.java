@@ -57,7 +57,9 @@ public class Main {
             }
         }
         //scores에 들어간 Score 객체의 staffChip을 정렬해야된다.
-        Arrays.sort(scores, 0, scores.length, (a, b) -> Double.compare(b.staffChip, a.staffChip));
+//        Arrays.sort(scores, 0, scores.length, (a, b) -> Double.compare(b.staffChip, a.staffChip));
+
+        sortScoresDescendingOrder(scores);  //sort대신 사용
 
         for (int i = 0; i < 14; i++) {
             result[scores[i].staffIndex]++;
@@ -68,6 +70,18 @@ public class Main {
             if (inputArray[i] != 0) {
                 System.out.print((char) (i + 'A'));
                 System.out.println(" " + result[i]);
+            }
+        }
+    }
+    public static void sortScoresDescendingOrder(Score[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < i; j++) {   //j가 i까지인 이유는 현재 나의 앞에만 보면 되기 때문
+                if (arr[i].staffChip > arr[j].staffChip) {  //나보다 작은 애가 있는 거까지만 보기 위해서, 나보다 앞에 작은애가 있다면 내가 그 앞에 스면 됨
+                    Score cur = arr[i]; //나의 앞까지만 복사떠놓고, 내림차, j부터 i까지 있는 애들이 한칸씩 물러나고 내가 거기 들어가면 됨
+                    for (int k = i; k > j; k--) //한칸씩 이동해야 됨. 앞에서 부터 이동하면 계속 같은 값이 복사되기 때문에 뒤에서 부터 이동하도록 함
+                        arr[k] = arr[k - 1];
+                    arr[j] = cur;
+                }
             }
         }
     }
